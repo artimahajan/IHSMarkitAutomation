@@ -24,11 +24,12 @@ namespace DotNetFiddleUIAutomation
             {
                 ChromeOptions options = new ChromeOptions();
                 string user = Environment.UserName;
-                options.AddUserProfilePreference("download.default_directory", @"C:\Users\arati\Desktop\IHS Markit\DotNetFiddleUIAutomation");
+                string path = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString();
+                options.AddUserProfilePreference("download.default_directory", @path);
                 options.AddUserProfilePreference("download.prompt_for_download", false);
                 try
                 {
-                    chromeDriver = new ChromeDriver(@"C:\Users\arati\Desktop\IHS Markit\DotNetFiddleUIAutomation", options);
+                    chromeDriver = new ChromeDriver(@path, options);
                 }
                 catch (Exception ex)
                 {
